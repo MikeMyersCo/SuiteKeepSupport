@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuiteKeep Support - Your Concert Management Assistant</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-fire-flame-curved"></i>
+                <span>SuiteKeep</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#guide" class="nav-link">User Guide</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#support" class="nav-link">Support</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">SuiteKeep</span>
+                <span class="subtitle">Concert Suite Management Made Simple</span>
+            </h1>
+            <p class="hero-description">
+                Transform your suite experience with intelligent seat tracking, real-time analytics, and seamless concert management.
+            </p>
+            <div class="hero-buttons">
+                <a href="#guide" class="btn btn-primary">
+                    <i class="fas fa-book"></i> View Guide
+                </a>
+                <a href="#support" class="btn btn-secondary">
+                    <i class="fas fa-headset"></i> Get Support
+                </a>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <img src="assets/images/dashboard-preview.png" alt="SuiteKeep Dashboard Preview" class="app-screenshot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need to manage your concert suite</p>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>8-Seat Suite Management</h3>
+                    <p>Visual seat selection with our unique firepit layout. Track availability, reservations, and sales for each seat.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Monitor performance metrics, revenue trends, and occupancy rates with beautiful visualizations.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Concert Calendar</h3>
+                    <p>Organize upcoming performances with calendar and list views. Never miss a show.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Family & Friends Tracking</h3>
+                    <p>Personalize seats with names for family tickets. Track who's attending each concert.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Revenue Management</h3>
+                    <p>Track ticket prices, costs, and profit margins. Generate detailed financial reports.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Customizable Settings</h3>
+                    <p>Personalize your suite name, venue location, and ticket pricing defaults.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Guide Section -->
+    <section id="guide" class="guide">
+        <div class="container">
+            <h2 class="section-title">User Guide</h2>
+            <p class="section-subtitle">Learn how to use every feature of SuiteKeep</p>
+            
+            <div class="guide-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="getting-started">
+                        <i class="fas fa-rocket"></i> Getting Started
+                    </button>
+                    <button class="tab-btn" data-tab="managing-concerts">
+                        <i class="fas fa-music"></i> Managing Concerts
+                    </button>
+                    <button class="tab-btn" data-tab="seat-management">
+                        <i class="fas fa-chair"></i> Seat Management
+                    </button>
+                    <button class="tab-btn" data-tab="analytics">
+                        <i class="fas fa-chart-bar"></i> Analytics
+                    </button>
+                    <button class="tab-btn" data-tab="settings">
+                        <i class="fas fa-sliders-h"></i> Settings
+                    </button>
+                </div>
+                
+                <div class="tab-content">
+                    <!-- Getting Started Tab -->
+                    <div class="tab-pane active" id="getting-started">
+                        <div class="guide-section">
+                            <h3>Welcome to SuiteKeep!</h3>
+                            <p>Follow these steps to get started with your concert suite management:</p>
+                            
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Customize Your Suite</h4>
+                                    <p>Navigate to Settings and personalize your suite name and venue location.</p>
+                                    <div class="screenshot-container">
+                                        <img src="assets/images/settings-screen.png" alt="Settings Screen" class="guide-screenshot">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Add Your First Concert</h4>
+                                    <p>Go to the Concerts tab and tap "Add Concert" to create your first event.</p>
+                                    <div class="screenshot-container">
+                                        <img src="assets/images/add-concert.png" alt="Add Concert" class="guide-screenshot">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Manage Your Seats</h4>
+                                    <p>Select seats in the interactive firepit view to update their status and details.</p>
+                                    <div class="screenshot-container">
+                                        <img src="assets/images/seat-selection.png" alt="Seat Selection" class="guide-screenshot">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Managing Concerts Tab -->
+                    <div class="tab-pane" id="managing-concerts">
+                        <div class="guide-section">
+                            <h3>Concert Management</h3>
+                            
+                            <div class="feature-demo">
+                                <h4>Adding a Concert</h4>
+                                <ol class="numbered-list">
+                                    <li>Tap the "Add Concert" button in the Concerts tab</li>
+                                    <li>Enter the artist name</li>
+                                    <li>Select the concert date</li>
+                                    <li>Tap "Create Concert"</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="feature-demo">
+                                <h4>Editing Concert Details</h4>
+                                <ol class="numbered-list">
+                                    <li>Tap on any concert in your list</li>
+                                    <li>Select "Edit Details" to modify artist or date</li>
+                                    <li>Make your changes and save</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="feature-demo">
+                                <h4>Calendar View</h4>
+                                <p>Switch between list and calendar views to see your concerts in different formats. The calendar view provides a monthly overview of all scheduled performances.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Seat Management Tab -->
+                    <div class="tab-pane" id="seat-management">
+                        <div class="guide-section">
+                            <h3>Seat Management System</h3>
+                            
+                            <div class="seat-status-guide">
+                                <h4>Understanding Seat Status</h4>
+                                <div class="status-grid">
+                                    <div class="status-item">
+                                        <span class="status-indicator available"></span>
+                                        <strong>Available:</strong> Seat is open for sale
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-indicator reserved"></span>
+                                        <strong>Reserved:</strong> Seat is held but not yet sold
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-indicator sold"></span>
+                                        <strong>Sold:</strong> Seat has been purchased
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-demo">
+                                <h4>Batch Operations</h4>
+                                <p>Use batch mode to update multiple seats at once:</p>
+                                <ol class="numbered-list">
+                                    <li>Tap "Batch Edit" in the seat view</li>
+                                    <li>Select multiple seats by tapping them</li>
+                                    <li>Choose an action (Mark as Sold, Reserved, or Available)</li>
+                                    <li>All selected seats will be updated simultaneously</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="feature-demo">
+                                <h4>Family Tickets</h4>
+                                <p>Personalize family seats with names:</p>
+                                <ol class="numbered-list">
+                                    <li>Select a seat and choose "Family" as the source</li>
+                                    <li>Enter the person's name</li>
+                                    <li>The seat will display their name instead of "FAMILY"</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Analytics Tab -->
+                    <div class="tab-pane" id="analytics">
+                        <div class="guide-section">
+                            <h3>Analytics & Reporting</h3>
+                            
+                            <div class="feature-demo">
+                                <h4>Dashboard Overview</h4>
+                                <p>The dashboard provides key metrics at a glance:</p>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check"></i> Total concerts scheduled</li>
+                                    <li><i class="fas fa-check"></i> Overall revenue and profit</li>
+                                    <li><i class="fas fa-check"></i> Occupancy rates</li>
+                                    <li><i class="fas fa-check"></i> Recent activity feed</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-demo">
+                                <h4>Performance Metrics</h4>
+                                <p>Track your suite's performance over time with visual charts showing:</p>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check"></i> Monthly revenue trends</li>
+                                    <li><i class="fas fa-check"></i> Seat utilization rates</li>
+                                    <li><i class="fas fa-check"></i> Top performing concerts</li>
+                                    <li><i class="fas fa-check"></i> Profit margin analysis</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-demo">
+                                <h4>Generating Reports</h4>
+                                <ol class="numbered-list">
+                                    <li>Navigate to the Analytics tab</li>
+                                    <li>Select your desired date range</li>
+                                    <li>Choose report type (Summary, Detailed, or Financial)</li>
+                                    <li>Export as PDF or share via email</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Settings Tab -->
+                    <div class="tab-pane" id="settings">
+                        <div class="guide-section">
+                            <h3>Customizing Your Experience</h3>
+                            
+                            <div class="feature-demo">
+                                <h4>Suite Information</h4>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check"></i> <strong>Suite Name:</strong> Personalize your suite's display name</li>
+                                    <li><i class="fas fa-check"></i> <strong>Venue Location:</strong> Set your concert venue</li>
+                                    <li><i class="fas fa-check"></i> <strong>Default Prices:</strong> Set standard ticket prices</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-demo">
+                                <h4>Ticket Sources</h4>
+                                <p>Configure where your tickets are typically sold:</p>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check"></i> Facebook Marketplace</li>
+                                    <li><i class="fas fa-check"></i> StubHub</li>
+                                    <li><i class="fas fa-check"></i> Vivid Seats</li>
+                                    <li><i class="fas fa-check"></i> SeatGeek</li>
+                                    <li><i class="fas fa-check"></i> Family & Friends</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Quick answers to common questions</p>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>How do I reset a seat to available?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tap on the seat in either the firepit view or list view, then select "Available" as the status. The seat will immediately return to the available state and any associated data will be cleared.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>Can I track parking tickets?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Each concert has a parking ticket option. Tap the parking icon in the concert view to add parking details including price, quantity, and notes.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>How do I delete a concert?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Swipe left on any concert in the list view to reveal the delete option, or tap on the concert and select "Delete Concert" from the menu.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>Can I export my concert data?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, navigate to Analytics and use the reporting feature to generate and export comprehensive reports of your concert data in PDF format.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>Is my data backed up?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your data is automatically saved locally on your device. For cloud backup, ensure you have iCloud enabled for the app in your device settings.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>How do I track costs vs revenue?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>When marking a seat as sold, enter both the sale price and your cost. The app automatically calculates profit margins and displays them in the Analytics dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="support">
+        <div class="container">
+            <h2 class="section-title">Get Support</h2>
+            <p class="section-subtitle">We're here to help you succeed</p>
+            
+            <div class="support-container">
+                <div class="support-info">
+                    <h3>Need Help?</h3>
+                    <p>Our support team is ready to assist you with any questions or issues you may have.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email Support</h4>
+                                <p>MikeMyersCo@Gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Response Time</h4>
+                                <p>Within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="support-tips">
+                        <h4>Before Submitting a Ticket:</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Check the FAQ section above</li>
+                            <li><i class="fas fa-check"></i> Review the user guide</li>
+                            <li><i class="fas fa-check"></i> Update to the latest version</li>
+                            <li><i class="fas fa-check"></i> Restart the app</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="support-form">
+                    <form id="supportForm" action="form-handler.php" method="POST">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">Issue Category</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select a category...</option>
+                                <option value="bug">Bug Report</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="help">How-To Question</option>
+                                <option value="account">Account Issue</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Describe Your Issue</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="device">Device Type</label>
+                            <select id="device" name="device">
+                                <option value="">Select your device...</option>
+                                <option value="iphone">iPhone</option>
+                                <option value="ipad">iPad</option>
+                                <option value="mac">Mac</option>
+                                <option value="vision">Vision Pro</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-paper-plane"></i> Submit Ticket
+                        </button>
+                        
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-fire-flame-curved"></i>
+                    <span>SuiteKeep</span>
+                </div>
+                <p class="footer-text">© 2024 SuiteKeep. Making concert suite management effortless.</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#guide">Guide</a>
+                    <a href="#support">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

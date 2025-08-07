@@ -1,0 +1,41 @@
+Screenshots Needed for SuiteKeep Support Website:
+
+1. app-preview.png (300x600px)
+   - Main app screenshot showing the overall interface
+   - Should highlight the key features and modern design
+   - Used in the hero section phone mockup
+
+2. settings-screen.png (400x600px) 
+   - Screenshot of the Settings tab
+   - Should show suite customization options
+   - Suite name and venue location settings
+
+3. add-concert.png (400x600px)
+   - Screenshot of the "Add Concert" dialog
+   - Should show the artist and date input fields
+   - Clean, modern dialog design
+
+4. seat-selection.png (400x600px)
+   - Screenshot of the interactive seat selection view
+   - Should show the firepit layout with seats
+   - Demonstrate the seat status colors
+
+5. dashboard-overview.png (400x600px) - Optional
+   - Screenshot of the Dashboard tab
+   - Show the summary cards and analytics
+   - Highlight the gradient header design
+
+6. analytics-screen.png (400x600px) - Optional  
+   - Screenshot of the Analytics tab
+   - Show performance metrics and charts
+   - Professional data visualization
+
+To add screenshots:
+1. Take screenshots on your iOS device
+2. Use a tool like CleanMaster or similar to add device frames
+3. Optimize for web (compress to ~100KB each)
+4. Save with the exact filenames listed above
+5. Place in this /assets/images/ directory
+
+For now, the website uses gradient placeholders that match the app's color scheme.
+The site is fully functional without images, but screenshots will greatly enhance the user experience.
