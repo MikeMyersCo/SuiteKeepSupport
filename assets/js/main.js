@@ -162,15 +162,24 @@ function initSupportForm() {
     const form = document.getElementById('supportForm');
     const formMessage = document.getElementById('formMessage');
 
+    console.log('Initializing support form...', form); // Debug log
+
     if (form) {
+        console.log('Form found, adding event listener'); // Debug log
+        
         form.addEventListener('submit', function(e) {
+            console.log('Form submitted!'); // Debug log
             e.preventDefault();
             
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
             
+            console.log('Form data:', data); // Debug log
+            
             // Validate form data
             const errors = validateForm(data);
+            console.log('Validation errors:', errors); // Debug log
+            
             if (errors.length > 0) {
                 showFormMessage(errors.join(', '), 'error');
                 return;
@@ -182,9 +191,18 @@ function initSupportForm() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // Submit to Formspree
-            submitToFormspree(form, data, submitBtn, originalText);
+            console.log('Calling submitToFormspree...'); // Debug log
+            
+            // For now, bypass Formspree and go straight to mailto fallback for testing
+            console.log('Bypassing Formspree, using mailto fallback');
+            resetButton(submitBtn, originalText);
+            showFormMessage('Opening your email client with the support request...', 'success');
+            setTimeout(() => {
+                sendEmailFallback(data);
+            }, 1000);
         });
+    } else {
+        console.error('Support form not found!'); // Debug log
     }
     
     // Check for success parameter in URL
@@ -193,11 +211,15 @@ function initSupportForm() {
 
 // Submit form to Formspree
 function submitToFormspree(form, data, submitBtn, originalText) {
+    console.log('submitToFormspree called with:', form.action); // Debug log
+    
     // Create FormData with all the form fields
     const formData = new FormData(form);
     
     // Add dynamic subject line with category and subject
     formData.set('_subject', `SuiteKeep Support - ${data.category || 'General'}: ${data.subject}`);
+    
+    console.log('Making fetch request to:', form.action); // Debug log
     
     fetch(form.action, {
         method: 'POST',
@@ -207,17 +229,21 @@ function submitToFormspree(form, data, submitBtn, originalText) {
         }
     })
     .then(response => {
+        console.log('Fetch response:', response); // Debug log
         resetButton(submitBtn, originalText);
         
         if (response.ok) {
+            console.log('Response OK, showing success message'); // Debug log
             showFormMessage('Thank you! Your support request has been sent successfully. We\'ll respond within 48 hours.', 'success');
             form.reset();
         } else {
-            response.json().then(data => {
-                if (data.errors) {
-                    showFormMessage('Form submission error: ' + data.errors.map(error => error.message).join(', '), 'error');
+            console.log('Response not OK:', response.status); // Debug log
+            response.json().then(responseData => {
+                console.log('Error response data:', responseData); // Debug log
+                if (responseData.errors) {
+                    showFormMessage('Form submission error: ' + responseData.errors.map(error => error.message).join(', '), 'error');
                 } else {
-                    fallbackToMailto(data);
+                    sendEmailFallback(data);
                 }
             });
         }
