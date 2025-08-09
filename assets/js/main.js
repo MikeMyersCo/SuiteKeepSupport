@@ -300,7 +300,7 @@ ${data.message || 'No message provided'}
 This email was sent from the SuiteKeep Support website.
     `);
     
-    const mailtoLink = `mailto:MikeMyersCo@Gmail.com?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:suitekeep25@gmail.com?subject=${subject}&body=${body}`;
     
     // Open default email client
     const a = document.createElement('a');
