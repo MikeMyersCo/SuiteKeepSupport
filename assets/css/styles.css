@@ -709,6 +709,84 @@ html {
     background: var(--light-bg);
 }
 
+/* Downloads Section */
+.downloads-section {
+    margin-bottom: 3rem;
+}
+
+.download-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 2rem;
+}
+
+.download-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.download-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.download-content {
+    flex: 1;
+}
+
+.download-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.download-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.download-details {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.download-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.download-meta i {
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .download-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .download-details {
+        justify-content: center;
+    }
+}
+
 .support-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
