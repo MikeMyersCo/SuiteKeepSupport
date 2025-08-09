@@ -452,59 +452,51 @@
                 </div>
                 
                 <div class="support-form">
-                    <form id="supportForm" action="https://formspree.io/f/xvgpkrby" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="category">Issue Category</label>
-                            <select id="category" name="category" required>
-                                <option value="">Select a category...</option>
-                                <option value="bug">Bug Report</option>
-                                <option value="feature">Feature Request</option>
-                                <option value="help">How-To Question</option>
-                                <option value="account">Account Issue</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Describe Your Issue</label>
-                            <textarea id="message" name="message" rows="6" required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="device">Device Type</label>
-                            <select id="device" name="device">
-                                <option value="">Select your device...</option>
-                                <option value="iphone">iPhone</option>
-                            </select>
-                        </div>
-                        
-                        <!-- Hidden fields for Formspree configuration -->
-                        <input type="hidden" name="_to" value="MikeMyersCo@Gmail.com">
-                        <input type="hidden" name="_subject" value="SuiteKeep Support Request">
-                        <input type="hidden" name="_next" value="https://miketysonmyers.github.io/SuiteKeepSupport/?success=1">
-                        <input type="hidden" name="_template" value="box">
-                        
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-paper-plane"></i> Submit Ticket
-                        </button>
-                        
-                        <div class="form-message" id="formMessage"></div>
-                    </form>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">Issue Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category...</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="help">How-To Question</option>
+                            <option value="account">Account Issue</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Describe Your Issue</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="device">Device Type</label>
+                        <select id="device" name="device">
+                            <option value="">Select your device...</option>
+                            <option value="iphone">iPhone</option>
+                        </select>
+                    </div>
+                    
+                    <button onclick="sendSupportEmail()" class="btn btn-primary btn-block">
+                        <i class="fas fa-paper-plane"></i> Submit Ticket
+                    </button>
+                    
+                    <div class="form-message" id="formMessage"></div>
                 </div>
             </div>
         </div>
@@ -534,6 +526,91 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Simple inline support form function -->
+    <script>
+        function sendSupportEmail() {
+            console.log('sendSupportEmail called');
+            
+            // Get form values
+            const name = document.getElementById('name').value || 'Not provided';
+            const email = document.getElementById('email').value || 'Not provided';
+            const category = document.getElementById('category').value || 'General';
+            const subject = document.getElementById('subject').value || 'Support Request';
+            const message = document.getElementById('message').value || 'No message provided';
+            const device = document.getElementById('device').value || 'iPhone';
+            
+            console.log('Form values:', {name, email, category, subject, message, device});
+            
+            // Basic validation
+            if (!name.trim() || name === 'Not provided') {
+                alert('Please enter your name');
+                return;
+            }
+            
+            if (!email.trim() || email === 'Not provided' || !email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            if (!subject.trim() || subject === 'Support Request') {
+                alert('Please enter a subject');
+                return;
+            }
+            
+            if (!message.trim() || message === 'No message provided') {
+                alert('Please describe your issue');
+                return;
+            }
+            
+            // Create email body
+            const emailBody = `
+SuiteKeep Support Request
+
+Customer Information:
+Name: ${name}
+Email: ${email}
+Device: ${device}
+
+Issue Details:
+Category: ${category}
+Subject: ${subject}
+
+Message:
+${message}
+
+---
+This request was submitted through the SuiteKeep Support website.
+Please respond to: ${email}
+            `;
+            
+            // Create mailto link
+            const mailtoSubject = encodeURIComponent(`SuiteKeep Support - ${category}: ${subject}`);
+            const mailtoBody = encodeURIComponent(emailBody);
+            const mailtoLink = `mailto:MikeMyersCo@Gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+            
+            console.log('Opening mailto link...');
+            
+            // Show success message
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.innerHTML = 'Opening your email client with the support request...';
+            messageDiv.className = 'form-message success';
+            messageDiv.style.display = 'block';
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Clear form after a delay
+            setTimeout(() => {
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('category').value = '';
+                document.getElementById('subject').value = '';
+                document.getElementById('message').value = '';
+                document.getElementById('device').value = '';
+            }, 2000);
+        }
+    </script>
+    
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="assets/js/main.js"></script>
