@@ -452,7 +452,7 @@
                 </div>
                 
                 <div class="support-form">
-                    <form id="supportForm" action="form-handler.php" method="POST">
+                    <form id="supportForm" action="https://formspree.io/f/mkgwgqpv" method="POST">
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" name="name" required>
@@ -493,6 +493,12 @@
                             </select>
                         </div>
                         
+                        <!-- Hidden fields for Formspree configuration -->
+                        <input type="hidden" name="_to" value="MikeMyersCo@Gmail.com">
+                        <input type="hidden" name="_subject" value="SuiteKeep Support Request">
+                        <input type="hidden" name="_next" value="https://miketysonmyers.github.io/SuiteKeepSupport/?success=1">
+                        <input type="hidden" name="_template" value="box">
+                        
                         <button type="submit" class="btn btn-primary btn-block">
                             <i class="fas fa-paper-plane"></i> Submit Ticket
                         </button>
@@ -528,6 +534,8 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

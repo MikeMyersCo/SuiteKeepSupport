@@ -169,52 +169,92 @@ function initSupportForm() {
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
             
+            // Validate form data
+            const errors = validateForm(data);
+            if (errors.length > 0) {
+                showFormMessage(errors.join(', '), 'error');
+                return;
+            }
+            
             // Show loading state
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // Submit form to PHP handler
-            fetch('form-handler.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                if (result.success) {
-                    // Show success message
-                    showFormMessage(result.message, 'success');
-                    // Reset form
-                    form.reset();
-                } else {
-                    // Show error message
-                    showFormMessage(result.message || 'An error occurred. Please try again.', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Show error message and fallback to mailto
-                showFormMessage('There was a problem submitting your request. Opening your email client as a backup...', 'error');
-                
-                // Fallback to mailto
-                setTimeout(() => {
-                    sendEmailFallback(data);
-                }, 2000);
-            });
+            // Submit to Formspree
+            submitToFormspree(form, data, submitBtn, originalText);
         });
     }
+    
+    // Check for success parameter in URL
+    checkForSuccessMessage();
+}
+
+// Submit form to Formspree
+function submitToFormspree(form, data, submitBtn, originalText) {
+    // Create FormData with all the form fields
+    const formData = new FormData(form);
+    
+    // Add dynamic subject line with category and subject
+    formData.set('_subject', `SuiteKeep Support - ${data.category || 'General'}: ${data.subject}`);
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        resetButton(submitBtn, originalText);
+        
+        if (response.ok) {
+            showFormMessage('Thank you! Your support request has been sent successfully. We\'ll respond within 48 hours.', 'success');
+            form.reset();
+        } else {
+            response.json().then(data => {
+                if (data.errors) {
+                    showFormMessage('Form submission error: ' + data.errors.map(error => error.message).join(', '), 'error');
+                } else {
+                    fallbackToMailto(data);
+                }
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Formspree submission error:', error);
+        resetButton(submitBtn, originalText);
+        
+        // Fallback to mailto
+        showFormMessage('There was a problem submitting your request. Opening your email client as a backup...', 'error');
+        setTimeout(() => {
+            sendEmailFallback(data);
+        }, 2000);
+    });
+}
+
+// Check for success message in URL parameters
+function checkForSuccessMessage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === '1') {
+        showFormMessage('Thank you! Your support request has been sent successfully. We\'ll respond within 48 hours.', 'success');
+        
+        // Clean up URL
+        const url = new URL(window.location);
+        url.searchParams.delete('success');
+        window.history.replaceState({}, document.title, url);
+        
+        // Scroll to form
+        document.getElementById('support').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+
+// Helper function to reset button state
+function resetButton(submitBtn, originalText) {
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
 }
 
 // Email fallback function
