@@ -1150,15 +1150,14 @@ html {
 /* Usage Instructions Styles */
 .usage-instructions {
     margin-top: 20px;
-    padding: 15px;
-    background: rgba(255,255,255,0.12);
-    border-radius: 8px;
-    border-left: 4px solid #ff6b35;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    background: linear-gradient(135deg, #ff6b35 0%, #f5576c 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .usage-instructions h4 {
-    color: #ff6b35;
+    color: white;
     margin: 0 0 15px 0;
     display: flex;
     align-items: center;
@@ -1170,63 +1169,64 @@ html {
 .usage-instructions ol {
     margin: 0;
     padding-left: 20px;
-    color: rgba(255,255,255,0.95);
+    color: white;
     list-style-type: decimal;
-    counter-reset: item;
 }
 
 .usage-instructions ol li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     line-height: 1.6;
-    color: rgba(255,255,255,0.95);
+    color: white;
+    font-size: 15px;
 }
 
 .usage-instructions ol li strong {
-    color: rgba(255,255,255,1);
-    font-weight: 600;
+    color: white;
+    font-weight: 700;
 }
 
 .usage-instructions p {
     margin: 15px 0 0 0;
     font-size: 14px;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.9);
     line-height: 1.5;
+    font-style: italic;
 }
 
 /* Mobile responsive adjustments for usage instructions */
 @media (max-width: 768px) {
     .usage-instructions {
         margin-top: 15px;
-        padding: 12px;
+        padding: 18px;
         font-size: 14px;
-        background: rgba(255,255,255,0.15) !important;
     }
     
     .usage-instructions h4 {
-        font-size: 16px;
-        color: #ff6b35 !important;
+        font-size: 17px;
+        color: white !important;
     }
     
     .usage-instructions ol {
-        padding-left: 16px;
-        color: rgba(255,255,255,0.95) !important;
+        padding-left: 18px;
+        color: white !important;
         list-style-type: decimal !important;
     }
     
     .usage-instructions ol li {
         margin-bottom: 10px;
         line-height: 1.5;
-        color: rgba(255,255,255,0.95) !important;
+        color: white !important;
+        font-size: 14px;
     }
     
     .usage-instructions ol li strong {
-        color: rgba(255,255,255,1) !important;
-        font-weight: 600;
+        color: white !important;
+        font-weight: 700;
     }
     
     .usage-instructions p {
         font-size: 13px;
         margin-top: 12px;
-        color: rgba(255,255,255,0.8) !important;
+        color: rgba(255,255,255,0.9) !important;
     }
 }
