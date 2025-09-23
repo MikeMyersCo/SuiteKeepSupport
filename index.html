@@ -44,7 +44,7 @@
                 <span class="subtitle">Concert Suite Management Made Simple</span>
             </h1>
             <p class="hero-description">
-                Transform your suite experience with intelligent seat tracking, real-time analytics, and seamless concert management.
+                Transform your suite experience with intelligent seat tracking, real-time analytics, collaborative sharing, and seamless concert management across all your devices.
             </p>
             <div class="hero-buttons">
                 <a href="#guide" class="btn btn-primary">
@@ -111,6 +111,22 @@
                 
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="feature-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>Shared Suite Management</h3>
+                    <p>Collaborate with family and friends! Share your suite with multiple members, assign roles, and sync data in real-time across all devices.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>CloudKit Sync</h3>
+                    <p>Seamless data synchronization across all your devices and shared suite members with real-time updates and visual sync indicators.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="700">
+                    <div class="feature-icon">
                         <i class="fas fa-cog"></i>
                     </div>
                     <h3>Customizable Settings</h3>
@@ -139,6 +155,9 @@
                     </button>
                     <button class="tab-btn" data-tab="analytics">
                         <i class="fas fa-chart-bar"></i> Analytics
+                    </button>
+                    <button class="tab-btn" data-tab="shared-suites">
+                        <i class="fas fa-users-cog"></i> Shared Suites
                     </button>
                     <button class="tab-btn" data-tab="settings">
                         <i class="fas fa-sliders-h"></i> Settings
@@ -302,7 +321,79 @@
                             </div>
                         </div>
                     </div>
-                    
+
+                    <!-- Shared Suites Tab -->
+                    <div class="tab-pane" id="shared-suites">
+                        <div class="guide-section">
+                            <h3>Shared Suite Management</h3>
+                            <p>Collaborate with family and friends by sharing your suite data across multiple devices and users.</p>
+
+                            <div class="feature-demo">
+                                <h4>Creating a Shared Suite</h4>
+                                <ol class="numbered-list">
+                                    <li>Go to Settings and enable "Multi-Tenant Suites"</li>
+                                    <li>Tap "Create Shared Suite" to set up collaboration</li>
+                                    <li>Choose how to send the invitation code (text message, email, etc.)</li>
+                                    <li>Send the generated invitation code to family and friends</li>
+                                    <li>Guest members enter the invitation code in their SuiteKeep app to join</li>
+                                </ol>
+                            </div>
+
+                            <div class="feature-demo">
+                                <h4>User Roles & Permissions</h4>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-crown"></i> <strong>Owner:</strong> Full access to edit suite settings, manage members, and delete the shared suite</li>
+                                    <li><i class="fas fa-edit"></i> <strong>Editor:</strong> Can modify concert data, seat status, and pricing information</li>
+                                    <li><i class="fas fa-eye"></i> <strong>Viewer:</strong> Read-only access to view all suite information</li>
+                                </ul>
+                            </div>
+
+                            <div class="feature-demo">
+                                <h4>Real-Time Sync</h4>
+                                <p>All changes are automatically synchronized across all devices:</p>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-sync"></i> Concert data updates instantly for all members</li>
+                                    <li><i class="fas fa-clock"></i> Visual sync indicators show when data is being updated</li>
+                                    <li><i class="fas fa-users"></i> Member count and status displayed in sync indicators</li>
+                                    <li><i class="fas fa-refresh"></i> Manual sync button with animated feedback</li>
+                                </ul>
+                            </div>
+
+                            <div class="feature-demo">
+                                <h4>Joining a Shared Suite (Guest)</h4>
+                                <ol class="numbered-list">
+                                    <li>Receive the invitation code from the suite owner via text, email, or other method</li>
+                                    <li>Open SuiteKeep app on your device</li>
+                                    <li>Go to Settings and enable "Multi-Tenant Suites"</li>
+                                    <li>Tap "Join Shared Suite"</li>
+                                    <li>Paste or type the invitation code exactly as received</li>
+                                    <li>Tap "Join" to become a member of the shared suite</li>
+                                </ol>
+                            </div>
+
+                            <div class="feature-demo">
+                                <h4>Managing Suite Members (Owner)</h4>
+                                <ol class="numbered-list">
+                                    <li>In Settings, scroll to the "Shared Suite" section</li>
+                                    <li>View current members and their roles</li>
+                                    <li>Tap on a member to change their role (Owner only)</li>
+                                    <li>Use "Create Invitation" to generate a new invitation code</li>
+                                    <li>Share the code via your preferred method (text, email, etc.)</li>
+                                    <li>New members enter the code in their SuiteKeep app to join</li>
+                                </ol>
+                            </div>
+
+                            <div class="feature-demo">
+                                <h4>Leaving or Deleting a Shared Suite</h4>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-sign-out-alt"></i> <strong>Leave Suite:</strong> Removes you from the shared suite while keeping your local data</li>
+                                    <li><i class="fas fa-trash"></i> <strong>Delete Suite (Owner only):</strong> Permanently removes the shared suite for all members</li>
+                                    <li><i class="fas fa-shield-alt"></i> <strong>Data Safety:</strong> Local backups remain intact even after leaving</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Settings Tab -->
                     <div class="tab-pane" id="settings">
                         <div class="guide-section">
@@ -329,6 +420,25 @@
                                 </ul>
                             </div>
                             
+                            <div class="feature-demo">
+                                <h4>Collaboration Features</h4>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check"></i> <strong>Multi-Tenant Suites:</strong> Enable sharing your suite with family and friends</li>
+                                    <li><i class="fas fa-check"></i> <strong>Shared Suite Creation:</strong> Set up collaborative access with invitation codes</li>
+                                    <li><i class="fas fa-check"></i> <strong>Member Management:</strong> View and manage suite members and their roles</li>
+                                </ul>
+                            </div>
+
+                            <div class="feature-demo">
+                                <h4>Data Synchronization</h4>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check"></i> <strong>CloudKit Sync:</strong> Real-time data synchronization across all devices</li>
+                                    <li><i class="fas fa-check"></i> <strong>Visual Sync Indicators:</strong> See sync status with animated feedback</li>
+                                    <li><i class="fas fa-check"></i> <strong>Manual Sync:</strong> Force sync with the rotating sync button</li>
+                                    <li><i class="fas fa-check"></i> <strong>Member Count Display:</strong> Shows how many members are in your shared suite</li>
+                                </ul>
+                            </div>
+
                             <div class="feature-demo">
                                 <h4>Data Management</h4>
                                 <ul class="feature-list">
@@ -442,6 +552,72 @@
                 <div class="faq-item">
                     <div class="faq-question">
                         <i class="fas fa-question-circle"></i>
+                        <h4>How do I share my suite with family and friends?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Go to Settings and enable "Multi-Tenant Suites", then tap "Create Shared Suite". Generate an invitation code and send it to family and friends via text message, email, or your preferred method. They must open SuiteKeep, enable "Multi-Tenant Suites", tap "Join Shared Suite", and paste the exact invitation code to join.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>How do invitation codes work?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Invitation codes are unique text strings generated by the suite owner. The owner sends this code via text message, email, or any preferred method. The guest must manually enter or paste the exact code in their SuiteKeep app under "Join Shared Suite". Codes are secure and can only be used to join the specific suite they were created for.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>What's the difference between Owner, Editor, and Viewer roles?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Owner:</strong> Full access including managing members and deleting the suite. <strong>Editor:</strong> Can modify concert data and seat information. <strong>Viewer:</strong> Read-only access to view all information but cannot make changes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>Why does the sync status show different member counts?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you see inconsistent member counts, tap the sync button to refresh the data. The sync button will show "Syncing..." with a rotating icon while updating. Both devices should show the same count after synchronization completes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>How do I know if my data is syncing?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Look for the sync status indicator in your dashboard when using shared suites. It shows "Syncing..." when data is updating, displays member count when synced, and provides a manual sync button with animated feedback.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>What happens to my data if I leave a shared suite?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your local data remains intact when you leave a shared suite. You'll keep a copy of all concert information, but future changes won't sync with other members. You can always create backups before leaving for extra safety.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
                         <h4>What warranty or support does the app provide?</h4>
                         <i class="fas fa-chevron-down"></i>
                     </div>
@@ -543,6 +719,7 @@
                             <option value="bug">Bug Report</option>
                             <option value="feature">Feature Request</option>
                             <option value="help">How-To Question</option>
+                            <option value="sync">Sync/Shared Suite Issue</option>
                             <option value="account">Account Issue</option>
                             <option value="other">Other</option>
                         </select>
@@ -590,6 +767,7 @@
                     <a href="#features">Features</a>
                     <a href="#guide">Guide</a>
                     <a href="#support">Support</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
                 </div>
             </div>
         </div>
