@@ -88,9 +88,9 @@ function initScrollEffects() {
 
         // Navbar background opacity
         if (scrollTop > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.background = 'rgba(8, 9, 14, 0.95)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.background = 'rgba(8, 9, 14, 0.8)';
         }
     });
 
