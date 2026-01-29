@@ -872,25 +872,26 @@ body {
 .guide-arrow {
     position: absolute;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 4px;
     z-index: 2;
     pointer-events: none;
 }
 
 .guide-arrow-update {
-    top: 38%;
-    right: -60px;
+    top: 52%;
+    right: -80px;
 }
 
 .guide-arrow-add {
-    top: -8px;
-    right: -52px;
+    top: 5%;
+    right: -72px;
 }
 
-.guide-arrow-svg {
-    width: 24px;
-    height: 32px;
+.guide-arrow-svg-h {
+    width: 30px;
+    height: 14px;
+    flex-shrink: 0;
 }
 
 .guide-arrow-label {
@@ -913,11 +914,11 @@ body {
 
 @media (max-width: 480px) {
     .guide-arrow-update {
-        right: -50px;
+        right: -70px;
     }
 
     .guide-arrow-add {
-        right: -44px;
+        right: -64px;
     }
 }
 
