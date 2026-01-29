@@ -863,63 +863,60 @@ body {
     }
 }
 
-/* Guide screenshot annotations */
+/* Guide screenshot annotations — pulsing tap rings */
 .annotated-guide-screenshot {
     position: relative;
-    overflow: visible;
 }
 
-.guide-arrow {
+.tap-ring {
     position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    z-index: 2;
+    width: 46px;
+    height: 46px;
+    border: 3px solid var(--emerald-400);
+    border-radius: 50%;
     pointer-events: none;
+    z-index: 2;
+    animation: tap-pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
 }
 
-.guide-arrow-update {
-    top: 52%;
-    right: -80px;
+.tap-ring::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 2px solid rgba(52, 211, 153, 0.3);
+    border-radius: 50%;
+    animation: tap-pulse-outer 2s ease-in-out infinite;
 }
 
-.guide-arrow-add {
-    top: 5%;
-    right: -72px;
+/* Update 2026 Concerts button — center of button at ~54% top, ~50% left */
+.tap-ring-update {
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.guide-arrow-svg-h {
-    width: 30px;
-    height: 14px;
-    flex-shrink: 0;
+/* + Add button — top-right at ~6% top, ~82% left */
+.tap-ring-add {
+    top: 6%;
+    left: 82%;
+    transform: translate(-50%, -50%);
+    border-color: var(--amber-400);
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
 }
 
-.guide-arrow-label {
-    font-size: 0.65rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #08090e;
-    background: var(--emerald-400);
-    padding: 3px 8px;
-    border-radius: 100px;
-    white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(52, 211, 153, 0.4);
+.tap-ring-add::after {
+    border-color: rgba(251, 191, 36, 0.3);
 }
 
-.guide-arrow-label-amber {
-    background: var(--amber-400);
-    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+@keyframes tap-pulse {
+    0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
 }
 
-@media (max-width: 480px) {
-    .guide-arrow-update {
-        right: -70px;
-    }
-
-    .guide-arrow-add {
-        right: -64px;
-    }
+@keyframes tap-pulse-outer {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0; transform: scale(1.4); }
 }
 
 .guide-screenshot {
