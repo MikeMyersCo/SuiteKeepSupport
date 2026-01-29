@@ -2,8 +2,8 @@ name: Update Concert Schedule
 
 on:
   schedule:
-    # Daily at 9:00 AM UTC (3:00 AM Mountain Time)
-    - cron: '0 9 * * *'
+    # Daily at 12:00 PM Mountain Time (6:00 PM UTC)
+    - cron: '0 18 * * *'
   workflow_dispatch:
 
 permissions:
