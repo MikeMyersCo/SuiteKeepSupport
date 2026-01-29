@@ -863,6 +863,64 @@ body {
     }
 }
 
+/* Guide screenshot annotations */
+.annotated-guide-screenshot {
+    position: relative;
+    overflow: visible;
+}
+
+.guide-arrow {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.guide-arrow-update {
+    top: 38%;
+    right: -60px;
+}
+
+.guide-arrow-add {
+    top: -8px;
+    right: -52px;
+}
+
+.guide-arrow-svg {
+    width: 24px;
+    height: 32px;
+}
+
+.guide-arrow-label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #08090e;
+    background: var(--emerald-400);
+    padding: 3px 8px;
+    border-radius: 100px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(52, 211, 153, 0.4);
+}
+
+.guide-arrow-label-amber {
+    background: var(--amber-400);
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+}
+
+@media (max-width: 480px) {
+    .guide-arrow-update {
+        right: -50px;
+    }
+
+    .guide-arrow-add {
+        right: -44px;
+    }
+}
+
 .guide-screenshot {
     width: 100%;
     height: 100%;
