@@ -484,6 +484,101 @@ body {
     line-height: 1.6;
 }
 
+/* ── Auto-Update Highlight Banner ────────────── */
+.auto-update-highlight {
+    max-width: 900px;
+    margin: 0 auto 2rem;
+}
+
+.auto-update-highlight-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border: 1.5px solid rgba(52, 211, 153, 0.3);
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.auto-update-highlight-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--emerald-400), var(--violet-400));
+}
+
+.auto-update-icon-wrap {
+    width: 56px;
+    height: 56px;
+    background: rgba(52, 211, 153, 0.15);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.4rem;
+    color: var(--emerald-400);
+}
+
+.auto-update-text {
+    flex: 1;
+}
+
+.auto-update-text h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+}
+
+.auto-update-text p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.auto-update-text p strong {
+    color: var(--emerald-400);
+    font-weight: 600;
+}
+
+.auto-update-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: rgba(52, 211, 153, 0.15);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    border-radius: 100px;
+    color: var(--emerald-400);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .auto-update-highlight-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .auto-update-badge {
+        align-self: center;
+    }
+}
+
 /* ── Section Titles ───────────────────────────── */
 .section-title {
     font-size: 2.8rem;
@@ -577,6 +672,30 @@ body {
     color: var(--text-secondary);
     font-size: 0.92rem;
     line-height: 1.65;
+}
+
+/* Highlighted feature card */
+.feature-card-highlight {
+    border-color: rgba(52, 211, 153, 0.25);
+    background: linear-gradient(160deg, rgba(52, 211, 153, 0.08) 0%, rgba(22, 24, 38, 0.4) 100%);
+}
+
+.feature-card-highlight::before {
+    background: linear-gradient(90deg, var(--emerald-400), var(--violet-400));
+    opacity: 1;
+}
+
+.feature-card-highlight:hover {
+    border-color: rgba(52, 211, 153, 0.4);
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.1);
+}
+
+.feature-icon-highlight {
+    background: rgba(52, 211, 153, 0.15);
+}
+
+.feature-icon-highlight i {
+    color: var(--emerald-400);
 }
 
 /* ── Guide Section ────────────────────────────── */
@@ -997,6 +1116,160 @@ body {
 .download-meta i {
     color: var(--violet-400);
     font-size: 0.8rem;
+}
+
+/* Auto-Update Download Card */
+.auto-update-card {
+    border-color: rgba(52, 211, 153, 0.25);
+    background: linear-gradient(160deg, rgba(52, 211, 153, 0.06) 0%, rgba(22, 24, 38, 0.5) 100%);
+}
+
+.auto-update-card:hover {
+    border-color: rgba(52, 211, 153, 0.4);
+    box-shadow: 0 0 30px rgba(52, 211, 153, 0.08);
+}
+
+.auto-update-icon-circle {
+    background: rgba(52, 211, 153, 0.15);
+    border-color: rgba(52, 211, 153, 0.25);
+}
+
+.auto-update-icon-circle i {
+    color: var(--emerald-400);
+}
+
+.recommended-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    background: rgba(52, 211, 153, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    border-radius: 100px;
+    color: var(--emerald-400);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.recommended-badge i {
+    font-size: 0.7rem;
+}
+
+.auto-update-instructions {
+    background: rgba(52, 211, 153, 0.06);
+    border-color: rgba(52, 211, 153, 0.15);
+}
+
+.auto-update-instructions h4 {
+    color: var(--emerald-400);
+}
+
+/* Stacked auto-update card layout */
+.auto-update-card-stacked {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.auto-update-card-top {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.auto-update-card-body {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    align-items: flex-start;
+}
+
+.auto-update-screenshot-wrap {
+    flex-shrink: 0;
+}
+
+.annotated-screenshot {
+    position: relative;
+    width: 220px;
+}
+
+.screenshot-img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-lg);
+    display: block;
+}
+
+.screenshot-arrow {
+    position: absolute;
+    top: 38%;
+    left: -8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.arrow-svg {
+    width: 100px;
+    height: 80px;
+}
+
+.arrow-label {
+    display: inline-block;
+    background: var(--emerald-400);
+    color: #08090e;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-top: -6px;
+    margin-left: -4px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(52, 211, 153, 0.4);
+}
+
+.auto-update-steps {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .auto-update-card-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .auto-update-card-body {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .annotated-screenshot {
+        width: 200px;
+    }
+
+    .screenshot-arrow {
+        left: -6px;
+        top: 36%;
+    }
+
+    .auto-update-steps {
+        width: 100%;
+    }
+}
+
+.manual-download-card {
+    opacity: 0.75;
+    transition: opacity 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.manual-download-card:hover {
+    opacity: 1;
 }
 
 /* Usage Instructions */
