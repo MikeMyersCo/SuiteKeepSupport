@@ -845,6 +845,24 @@ body {
     box-shadow: var(--shadow-md);
 }
 
+.screenshot-pair {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.screenshot-pair .screenshot-container {
+    margin-top: 0;
+}
+
+@media (max-width: 480px) {
+    .screenshot-pair {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 .guide-screenshot {
     width: 100%;
     height: 100%;
