@@ -863,60 +863,70 @@ body {
     }
 }
 
-/* Guide screenshot annotations — pulsing tap rings */
+/* Guide screenshot annotations — arrows */
 .annotated-guide-screenshot {
     position: relative;
+    overflow: visible;
 }
 
-.tap-ring {
+.guide-arrow {
     position: absolute;
-    width: 46px;
-    height: 46px;
-    border: 3px solid var(--emerald-400);
-    border-radius: 50%;
+    display: flex;
+    align-items: center;
     pointer-events: none;
     z-index: 2;
-    animation: tap-pulse 2s ease-in-out infinite;
-    box-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
+    color: var(--emerald-400);
+    filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.4));
+    animation: arrow-bob 2s ease-in-out infinite;
 }
 
-.tap-ring::after {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    border: 2px solid rgba(52, 211, 153, 0.3);
-    border-radius: 50%;
-    animation: tap-pulse-outer 2s ease-in-out infinite;
+.guide-arrow svg {
+    flex-shrink: 0;
 }
 
-/* Update 2026 Concerts button — center of button at ~54% top, ~50% left */
-.tap-ring-update {
-    top: 51%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.guide-arrow-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    text-transform: uppercase;
 }
 
-/* + Add button — top-right at ~6% top, ~82% left */
-.tap-ring-add {
-    top: 6%;
-    left: 82%;
-    transform: translate(-50%, -50%);
-    border-color: var(--amber-400);
-    box-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
+/* Update button — label + arrow outside left edge, pointing right */
+.guide-arrow-update {
+    flex-direction: row;
+    gap: 4px;
+    top: 53%;
+    right: 100%;
+    margin-right: 6px;
+    transform: translateY(-50%);
 }
 
-.tap-ring-add::after {
-    border-color: rgba(251, 191, 36, 0.3);
+.guide-arrow-update svg {
+    width: 32px;
+    height: 18px;
 }
 
-@keyframes tap-pulse {
-    0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+/* + Add button — label + arrow outside right edge, pointing left toward button */
+.guide-arrow-add {
+    flex-direction: row;
+    gap: 4px;
+    top: 14%;
+    left: 100%;
+    margin-left: 6px;
+    transform: translateY(-50%);
+    color: var(--amber-400);
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.4));
 }
 
-@keyframes tap-pulse-outer {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 0; transform: scale(1.4); }
+.guide-arrow-add svg {
+    width: 32px;
+    height: 18px;
+}
+
+@keyframes arrow-bob {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
 }
 
 .guide-screenshot {
