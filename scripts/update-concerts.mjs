@@ -192,12 +192,21 @@ function makeNewConcertEntry(artist, dateISO, id) {
   };
 }
 
-function findNewConcerts(scraped, existing) {
-  const existingNormalized = existing.map(c => normalize(c.artist));
+function sameDate(dateA, dateB) {
+  // Compare calendar date only (ignore time), since show times may shift
+  return dateA.slice(0, 10) === dateB.slice(0, 10);
+}
 
+function findNewConcerts(scraped, existing) {
   return scraped.filter(sc => {
     const norm = normalize(sc.artist);
-    return !existingNormalized.some(en => fuzzyMatch(en, norm));
+
+    // Match by fuzzy artist name OR by date — a concert on the same date
+    // is the same show even if the artist name changed (e.g. replacement
+    // act, added supporting act, tour name change)
+    return !existing.some(ex =>
+      fuzzyMatch(normalize(ex.artist), norm) || sameDate(ex.date, sc.date)
+    );
   });
 }
 
