@@ -16,6 +16,11 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const JSON_PATH = join(__dirname, '..', 'assets', '2026FordAmp.json');
 
+// Strip fractional seconds from ISO dates — Swift's .iso8601 decoder doesn't support them
+function safeISO(date) {
+  return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
+}
+
 // --- Scraping ---
 
 async function fetchConcertPage() {
@@ -23,7 +28,7 @@ async function fetchConcertPage() {
   const timeout = setTimeout(() => controller.abort(), 30000);
 
   try {
-    const response = await fetch('https://www.fordamphitheater.live/', {
+    const response = await fetch('https://www.fordamphitheater.live/premium-experience/premium-shows/', {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
         'Accept': 'text/html,application/xhtml+xml',
@@ -47,11 +52,51 @@ async function fetchConcertPage() {
 }
 
 function parseConcertsFromHTML(html) {
-  const concerts = [];
+  // Primary strategy: parse JSON-LD structured data embedded in the page.
+  // The premium shows page includes schema.org Event objects with accurate
+  // artist names and start times — much more reliable than HTML scraping.
+  const jsonLdConcerts = parseJsonLd(html);
+  if (jsonLdConcerts.length > 0) {
+    console.log(`Found ${jsonLdConcerts.length} concert(s) via JSON-LD structured data`);
+    return jsonLdConcerts;
+  }
 
-  // Primary strategy: the site uses <h4><a>Artist Name</a></h4> followed by
-  // <p class="date">Day, Month DD, YYYY</p> and optional show time in another <p>
-  // We match each <h4><a>...</a></h4> and then look ahead for the date <p>
+  // Fallback: scrape HTML structure (homepage format with <h4><a> blocks)
+  console.log('No JSON-LD found, falling back to HTML parsing...');
+  const concerts = parseHtmlBlocks(html);
+  console.log(`Found ${concerts.length} concert(s) via HTML parsing`);
+  return concerts;
+}
+
+function parseJsonLd(html) {
+  const concerts = [];
+  const jsonLdPattern = /<script\s+type="application\/ld\+json"\s*>([\s\S]*?)<\/script>/gi;
+
+  for (const match of html.matchAll(jsonLdPattern)) {
+    try {
+      const data = JSON.parse(match[1]);
+      const events = Array.isArray(data) ? data : [data];
+
+      for (const event of events) {
+        if (event['@type'] !== 'Event' || !event.name || !event.startDate) continue;
+
+        const startDate = new Date(event.startDate);
+        if (isNaN(startDate.getTime()) || startDate.getFullYear() !== 2026) continue;
+
+        const artist = event.name.replace(/&#038;/g, '&').trim();
+        concerts.push({ artist, date: safeISO(startDate) });
+      }
+    } catch {
+      // Skip malformed JSON-LD blocks
+    }
+  }
+
+  // Deduplicate and sort
+  return deduplicateAndSort(concerts);
+}
+
+function parseHtmlBlocks(html) {
+  const concerts = [];
   const eventBlockPattern = /<h4[^>]*>\s*<a[^>]*>([^<]+)<\/a>\s*<\/h4>([\s\S]*?)(?=<h4|<\/div>\s*<a[^>]*class="buy-tickets")/gi;
   const datePattern = /(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),?\s*(\d{4})/i;
 
@@ -67,8 +112,6 @@ function parseConcertsFromHTML(html) {
     const year = dateMatch[3];
     if (parseInt(year) !== 2026) continue;
 
-    // Default show time: 7:30pm MT = 01:30 UTC next day
-    // Prefer "Show Time" over "Doors Open" if both are present
     let hours = 19, minutes = 30;
     const showTimeMatch = detailsRaw.match(/Show\s*Time:?\s*(\d{1,2}):(\d{2})\s*(am|pm)/i);
     const anyTimeMatch = detailsRaw.match(/(\d{1,2}):(\d{2})\s*(am|pm)/i);
@@ -80,39 +123,15 @@ function parseConcertsFromHTML(html) {
       else if (timeMatch[3].toLowerCase() === 'am' && hours === 12) hours = 0;
     }
 
-    // Convert local MT (UTC-6) to UTC
     const monthIndex = monthToIndex(month);
     const utcDate = new Date(Date.UTC(parseInt(year), monthIndex, parseInt(day), hours + 6, minutes));
-
-    concerts.push({
-      artist: artistRaw,
-      date: utcDate.toISOString(),
-    });
+    concerts.push({ artist: artistRaw, date: safeISO(utcDate) });
   }
 
-  console.log(`Found ${concerts.length} concert(s) via structured HTML parsing`);
+  return deduplicateAndSort(concerts);
+}
 
-  // Fallback: if structured parsing found nothing, try regex on stripped text
-  if (concerts.length === 0) {
-    console.log('Falling back to text-based parsing...');
-    const cleanHTML = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-    const allDates = [...cleanHTML.matchAll(new RegExp(datePattern.source, 'gi'))];
-
-    for (const dm of allDates) {
-      if (parseInt(dm[3]) !== 2026) continue;
-      const idx = dm.index;
-      const before = cleanHTML.slice(Math.max(0, idx - 300), idx);
-      // Look for a capitalized phrase that could be an artist name
-      const artistMatch = before.match(/([A-Z][A-Za-z\-'.]+(?:\s+(?:&|and|with|feat\.?|featuring|the|of)?\s*[A-Za-z\-'.]+){0,6})\s*$/);
-      if (artistMatch) {
-        const monthIndex = monthToIndex(dm[1]);
-        const utcDate = new Date(Date.UTC(parseInt(dm[3]), monthIndex, parseInt(dm[2]), 19 + 6, 30));
-        concerts.push({ artist: artistMatch[1].trim(), date: utcDate.toISOString() });
-      }
-    }
-  }
-
-  // Deduplicate by normalized artist name
+function deduplicateAndSort(concerts) {
   const seen = new Set();
   const deduped = [];
   for (const c of concerts) {
@@ -121,10 +140,7 @@ function parseConcertsFromHTML(html) {
     seen.add(key);
     deduped.push(c);
   }
-
-  // Sort by date
   deduped.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
   return deduped;
 }
 
@@ -156,7 +172,7 @@ function loadCurrentJSON() {
 }
 
 function makeNewConcertEntry(artist, dateISO, id) {
-  const now = new Date().toISOString();
+  const now = safeISO(new Date());
   const seat = {
     status: 'available',
     cost: 25,
@@ -239,7 +255,7 @@ async function main() {
   data.concerts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   // Update backup date
-  data.backupDate = new Date().toISOString();
+  data.backupDate = safeISO(new Date());
 
   // Write updated JSON
   writeFileSync(JSON_PATH, JSON.stringify(data, null, 2) + '\n');
